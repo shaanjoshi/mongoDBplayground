@@ -1,0 +1,40 @@
+Indexing - getIndexes(), explain("executionStats"), createIndex(), dropIndex()
+
+Aggregation - input -> output(input) -> output(input) -> output
+
+$project - select specific fields from a collection
+$match - to filtering out the operations
+$group - it actually does the aggregation
+$sum,$count,$avg
+$sort - sorting the document
+
+Assignment:-
+$filter
+$push
+$sort
+findAndModify()
+findOneAndUpdate()
+findOneAndReplace()
+findOneAndDelete()
+bulkWrite()
+$unset
+$replaceRoot
+$replaceWith
+Aggregation Pipeline - Manual
+Practice today's concepts which have been taught like Indexing and Aggregation(all operators
+
+
+
+
+
+
+
+
+
+
+
+<----Convert String to integer
+db.studentData.find().forEach( function (x) {
+x.Marks = parseInt(x.Marks);
+db.studentData.save(x);
+});
