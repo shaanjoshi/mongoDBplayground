@@ -1,0 +1,39 @@
+ show dbs
+
+db.studentData.find()
+
+db.studentData.updateOne({_id : ObjectId("629049f01408f7d35d28b9ac")},{$mul:{"Marks":2}})-------//updateOne with multiplication operator
+
+db.studentData.find({name: "suresh"})------//display the document with name suresh
+
+db.studentData.find().sort({_id: -1 }).limit(2)-------/// it will display last two documents in descending order(Note: -1= des; 1= asec)
+         
+db.studentData.find({Marks: {$gt: 50 }})-------/// it will fetch all the documents whoese marks is greater than 50
+
+db.studentData.update({name: "tarun"},{$set:{Class:"Berozgaar", Section: "F",Marks: 00 }},{upsert: true})------/// example of upsert with update function
+
+db.studentData.updateOne({name: "tarun"},{$set:{Class:"rozgaar", Section: "F",Marks: 00 }},{upsert: true})-----// example of upsert with updateOne
+
+db.studentData.updateMany({name: "ammy"},{$set:{Class:"rozgaar", Section: "F",Marks: 00 }},{upsert: true})-----//  example of upsert with update many
+
+db.studentData.findAndModify({query:{name: "jammy"},update: {$set:{Class:"rozgaar", Section: "F",Marks: 00 }}},{upsert: true})-----// example of upsert with find and modify
+
+db.studentData.findOneAndReplace({name: "jammy"},{name: "jameshwar", Marks: 33, })----// find one and replace
+
+db.studentData.findOneAndReplace({name: "jammy"},{name: "jameshwar", Marks: 33, })
+
+db.studentData.aggregate([{$project:{name: 1, Class:1, Section: 1} }])
+
+<----Aggregate funtions------>
+
+db.studentData.aggregate([{$match: {Section: "B"}}, {$project: {name: 1, Class: 1}}])
+
+db.studentData.find().forEach((x)=>{x.Marks=parseInt(x.Marks);db.studentData.save(x)})
+
+db.studentData.aggregate([{ $group: {_id: { "sectionwise": "$Section"}, "totalmarks": {$sum: "$Marks"}}}])
+
+db.studentData.aggregate([{$group: {_id: {"sectionwise": "$Section"}, "averageMarks": {$avg: "$Marks"}}}])
+
+db.studentData.aggregate([{ $group:{_id:{ "SectionWise":"$Section"},"TotalMarks":{$sum:"$Marks"},"Count":{$sum:1},"Average":{$avg:"$Marks"}}}]).pretty()
+
+db.studentData.updateOne({name: "jameshwar"}, {$unset:{Marks:{} }})
